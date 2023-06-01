@@ -36,6 +36,7 @@ require __DIR__.'/auth.php';
 Route::controller(AdminController::class)->group(function(){
 	Route::get('/admin/logout','AdminLogout')->name('admin.logout');
 	Route::get('/admin/profile','Profile')->name('admin.profile');
+    Route::get('/edit/profile','EditProfile')->name('edit.profile');
 
 });
 

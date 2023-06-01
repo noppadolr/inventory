@@ -20,8 +20,8 @@
                 <li class="menu-title">Menu</li>
 
                 <li>
-                    <a href="#" class="waves-effect">
-                        
+                    <a href="{{ route('dashboard') }}" class="waves-effect">
+
                         <span>Dashboard</span>
                     </a>
                 </li>
@@ -32,7 +32,7 @@
                         <span>Calendar</span>
                     </a>
                 </li>
-    
+
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-mail-send-line"></i>
