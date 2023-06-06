@@ -1,3 +1,5 @@
+
+
 <header id="page-topbar">
     <div class="navbar-header">
         <div class="d-flex">
@@ -32,17 +34,17 @@
                     <input type="text" class="form-control" placeholder="Search...">
                     <span class="ri-search-line"></span>
                 </div>
-            </form> 
-{{--  
+            </form>
+{{--
             <div class="dropdown dropdown-mega d-none d-lg-block ms-2">
                 <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
                     Mega Menu
-                    <i class="mdi mdi-chevron-down"></i> 
+                    <i class="mdi mdi-chevron-down"></i>
                 </button>
                 <div class="dropdown-menu dropdown-megamenu">
                     <div class="row">
                         <div class="col-sm-8">
-    
+
                             <div class="row">
                                 <div class="col-md-4">
                                     <h5 class="font-size-14">UI Components</h5>
@@ -119,7 +121,7 @@
                                         <li>
                                             <a href="javascript:void(0);">FAQs</a>
                                         </li>
-                            
+
                                     </ul>
                                 </div>
                             </div>
@@ -175,7 +177,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
                     aria-labelledby="page-header-search-dropdown">
-        
+
                     <form class="p-3">
                         <div class="mb-3 m-0">
                             <div class="input-group">
@@ -198,15 +200,20 @@
                     <i class="ri-fullscreen-line"></i>
                 </button>
             </div>
+@php
+$id = Auth::user()->id;
+$data=App\Models\User::find($id);
 
+@endphp
 
 
             <div class="dropdown d-inline-block user-dropdown">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="{{ asset('backend/assets/images/users/avatar-1.jpg') }}"
+                    <img class="rounded-circle header-profile-user" src="{{ (!empty($data->profile_image))?
+                        url('upload/admin_images/'.$data->profile_image):url('upload/no_image.jpg') }}"
                         alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1">Julia</span>
+                    <span class="d-none d-xl-inline-block ms-1">{{ $data->name }}</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
