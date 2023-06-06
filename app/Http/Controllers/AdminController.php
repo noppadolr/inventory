@@ -16,7 +16,7 @@ class AdminController extends Controller
 
     $request->session()->regenerateToken();
     $notification=array(
-        'message'=>'Admin Logout Successfully',
+        'message'=>'User Logout Successfully',
         'alert-type'=>'success',
        );
 
@@ -65,4 +65,17 @@ class AdminController extends Controller
    return \redirect()->route('admin.profile')->with($notification);
 
 }//End StoreProfile Method
+
+public function ChangePassword(){
+    return view('admin.admin_change_password');
+}
+//End ChangePassword Method
+
+public function UpdatePassword(Request $request){
+
+}
+//End Update Password Method
+
+
+
 }
