@@ -15,8 +15,12 @@ class AdminController extends Controller
     $request->session()->invalidate();
 
     $request->session()->regenerateToken();
+    $notification=array(
+        'message'=>'Admin Logout Successfully',
+        'alert-type'=>'success',
+       );
 
-    return redirect('/login');
+    return redirect('/login')->with($notification);
 
    }
    //End AdminLogout method
@@ -53,9 +57,9 @@ class AdminController extends Controller
             $data['profile_image']=$filename;
         }
    $data->save();
-   $notification=array([
+   $notification=array(
     'message'=>'Admin Profile Updated Successfully',
-    'alert-type'=>'success',]
+    'alert-type'=>'success',
    );
 
    return \redirect()->route('admin.profile')->with($notification);

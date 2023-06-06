@@ -19,6 +19,7 @@
         <link href="{{asset('backend/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="{{asset('backend/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('toastr/toastr.css') }}" type="text/css">
 
     </head>
 
@@ -41,16 +42,16 @@
                         <h4 class="text-muted text-center font-size-18"><b>Sign In</b></h4>
 
                         <div class="p-3">
-                            
+
                             <form class="form-horizontal mt-3"  method="POST" action="{{ route('login') }}">
                                 @csrf
 
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
-                                        <input class="form-control" 
+                                        <input class="form-control"
                                         id="username"
                                         name="username"
-                                        type="text" 
+                                        type="text"
                                         required=""
                                         placeholder="Username"
                                          >
@@ -59,11 +60,11 @@
 
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
-                                        <input class="form-control" 
+                                        <input class="form-control"
                                         id="password"
                                         name="password"
-                                        type="password" 
-                                        required="" 
+                                        type="password"
+                                        required=""
                                         placeholder="Password">
                                     </div>
                                 </div>
@@ -71,11 +72,11 @@
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" 
-                                            class="custom-control-input" 
+                                            <input type="checkbox"
+                                            class="custom-control-input"
                                             id="remember_me"
                                             name="remember"
-                                            
+
                                             >
                                             <label class="form-label ms-1" for="remember_me">Remember me</label>
                                         </div>
@@ -116,6 +117,49 @@
         <script src="{{asset('backend/assets/libs/node-waves/waves.min.js')}}"></script>
 
         <script src="{{asset('backend/assets/js/app.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('toastr/toastr.min.js') }}"></script>
+
+        <script>
+         @if(Session::has('message'))
+         var type = "{{ Session::get('alert-type','info') }}"
+         toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-center",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "1000",
+            "hideDuration": "1000",
+            "timeOut": "2500",
+            "extendedTimeOut": "300",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+
+         }
+
+         switch(type){
+            case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+            case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+            case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+            case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+         }
+         @endif
+        </script>
 
     </body>
 </html>
