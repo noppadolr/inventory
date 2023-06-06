@@ -43,16 +43,22 @@ class AdminController extends Controller
     $data->name = $request->name;
     $data->username=$request->username;
     $data->email=$request->email;
-    if($request->file('profile_image')){
+    if($request->file('profile_image'))
+        {
             $file=$request->file('profile_image');
             @unlink(public_path('upload/admin_images/'.$data->profile_image));
 
             $filename=$id.$file->getClientOriginalName();
             $file->move(public_path('upload/admin_images'),$filename);
             $data['profile_image']=$filename;
-   }
+        }
    $data->save();
-   return \redirect()->route('admin.profile');
+   $notification=array([
+    'message'=>'Admin Profile Updated Successfully',
+    'alert-type'=>'success',]
+   );
+
+   return \redirect()->route('admin.profile')->with($notification);
 
 }//End StoreProfile Method
 }
