@@ -80,7 +80,7 @@ public function UpdatePassword(Request $request){
     ]);
     $hashPassword = Auth::User()->password;
     if(Hash::check($request->oldpassword,$hashPassword)){
-        $users = User::find(Auth::if());
+        $users = User::find(Auth::id());
         $users->password=bcrypt($request->newpassword);
         $users->save();
 
